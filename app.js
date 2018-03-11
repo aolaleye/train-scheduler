@@ -13,22 +13,21 @@ var database = firebase.database();
 
 $(".submit").on("click", function() {
     event.preventDefault();    
-    var eName = $(".name").val().trim();
-    var eRole = $(".role").val().trim();
-    var eStartDate = $(".start-date").val().trim();
-    var eRate = $(".monthly-rate").val().trim();
+    var trainName = $(".train-name").val().trim();
+    var destination = $(".destination").val().trim();
+    var trainTime = $(".train-time").val().trim();
+    var frequency = $(".frequency").val().trim();
     
-    console.log(eName);
-    console.log(eRole);
-    console.log(eStartDate);
-    console.log(eRate);
+    console.log(trainName);
+    console.log(destination);
+    console.log(trainTime);
+    console.log(frequency);
 
     database.ref().push({
-        name: eName,
-        role: eRole,
-        startDate: eStartDate,
-        rate: eRate,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
+        trainName: trainName,
+        destination: destination,
+        frequency: frequency
+        // dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
     $(".form-group input").val(null);
@@ -40,11 +39,11 @@ database.ref().on("child_added", function(childSnapshot){
 
     var snap = childSnapshot.val();
 
-    var monthsWorked = moment().diff(snap.startDate, "months");
-    var totalBilled = (monthsWorked * snap.rate);
+    var nextArrival = moment().diff(snap.startDate, "months");
+    var minutesAway = (monthsWorked * snap.rate);
 
     $("tbody").append(
-        "<tr><td scope='col'>" + snap.name + "</td><td scope='col'>" + snap.role + "</td><td scope='col'>" + snap.startDate + "</td><td scope='col'>" + monthsWorked + "</td><td scope='col'>" + snap.rate + "</td><td scope='col'>" + totalBilled + "</td></tr>");
+        "<tr><td scope='col'>" + snap.trainName + "</td><td scope='col'>" + snap.destination + "</td><td scope='col'>" + snap.frequency + "</td><td scope='col'>" + nextArrival + "</td><td scope='col'>" + minutesAway + "</td></tr>");
 
 },  function(errorObject) {
     console.log("The read failed: " + errorObject.code);
