@@ -7,40 +7,11 @@ var config = {
     storageBucket: "train-scheduler-d154c.appspot.com",
     messagingSenderId: "300257344484"
   };
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
-    // // Assumptions
-    // var frequency = 3;
-
-    // // Time is 3:30 AM
-    // var trainTime = "03:30";
-
-    // // First Time (pushed back 1 year to make sure it comes before current time)
-    // var trainTimeConverted = moment(trainTime, "HH:mm").subtract(1, "years");
-    // console.log(trainTimeConverted);
-
-    // // Current Time
-    // var currentTime = moment();
-    // console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-    // // Difference between the times
-    // var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
-    // console.log("DIFFERENCE IN TIME: " + timeDifference);
-
-    // // Time apart (remainder)
-    // var remainder = timeDifference % frequency;
-    // console.log(remainder);
-
-    // // Minute Until Train
-    // var minutesAway = frequency - remainder;
-    // console.log("MINUTES TILL TRAIN: " + minutesAway);
-
-    // // Next Train
-    // var nextArrival = moment().add(minutesAway, "minutes");
-    // console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm"));
-
+//upon click of Submit button, the input values are stored in the database
 $(".submit").on("click", function() {
 
     event.preventDefault();    
@@ -61,7 +32,7 @@ $(".submit").on("click", function() {
 
 });
 
-//gives just the added value versus the all the values
+//calculates nextArrival and minutesAway - appends those variables and database values to the table
 database.ref().on("child_added", function(childSnapshot){
 
     var snap = childSnapshot.val();
@@ -71,7 +42,7 @@ database.ref().on("child_added", function(childSnapshot){
     var remainder = timeDifference % snap.frequency;
 
     var minutesAway = snap.frequency - remainder;
-    var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm A");
+    var nextArrival = moment().add(minutesAway, "minutes").format("h:mm A");
 
 
     $("tbody").append(
