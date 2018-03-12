@@ -1,0 +1,32 @@
+body {
+    font-family: 'Rye', cursive;
+}
+
+.form-group label {
+    color: #000;
+    font-weight: bold;
+}
+
+input::placeholder {
+    font-style: italic;
+    font-family: serif;
+}
+
+.jumbotron p {
+    font-family: serif;
+}
+
+.card-header,
+.submit {
+    background-color: #e4ab00;
+    text-shadow: 2px 2px #6f6f6f;
+    letter-spacing: 1px;
+}
+
+.display-4 {
+    text-shadow: 2px 2px #ab8100;
+}
+
+tbody td {
+    font-family: serif;
+}
