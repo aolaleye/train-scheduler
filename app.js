@@ -42,7 +42,7 @@ database.ref().on("child_added", function(childSnapshot){
     var remainder = timeDifference % snap.frequency;
 
     var minutesAway = snap.frequency - remainder;
-    var nextArrival = moment().add(minutesAway, "minutes").format("h:mm A");
+    var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm A");
 
 
     $("tbody").append(
