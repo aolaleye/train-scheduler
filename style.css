@@ -12,8 +12,13 @@ input::placeholder {
     font-family: serif;
 }
 
+input {
+    font-family: serif;
+}
+
 .jumbotron p {
     font-family: serif;
+    letter-spacing: .5px;
 }
 
 .card-header,
@@ -25,6 +30,7 @@ input::placeholder {
 
 .display-4 {
     text-shadow: 2px 2px #ab8100;
+    letter-spacing: 1px;
 }
 
 tbody td {
