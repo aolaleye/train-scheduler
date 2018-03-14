@@ -36,3 +36,8 @@ input {
 tbody td {
     font-family: serif;
 }
+
+.warning {
+    display: none;
+    font-family: serif;
+}
