@@ -21,7 +21,8 @@ $(".submit").on("click", function() {
     var trainTime = $(".train-time").val().trim();
     var frequency = $(".frequency").val().trim();
 
-    if (trainName === '' || destination === '' || trainTime === '' || frequency === '' ) {
+    if ($(".form-group input").val() === '') {
+        $(".warning").fadeIn(1000).fadeOut(2000);
         $(".submit").preventDefault();
     }
 
