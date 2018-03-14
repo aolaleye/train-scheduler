@@ -21,6 +21,10 @@ $(".submit").on("click", function() {
     var trainTime = $(".train-time").val().trim();
     var frequency = $(".frequency").val().trim();
 
+    if (trainName === '' || destination === '' || trainTime === '' || frequency === '' ) {
+        $(".submit").preventDefault();
+    }
+
     database.ref().push({
         trainName: trainName,
         destination: destination,
