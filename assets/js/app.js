@@ -21,11 +21,13 @@ $(".submit").on("click", function() {
     var trainTime = $(".train-time").val().trim();
     var frequency = $(".frequency").val().trim();
 
+    //if any fields are null, the submit button won't work and a warning message appears
     if ($(".form-group input").val() === '') {
         $(".warning").fadeIn(1000).fadeOut(2000);
         $(".submit").preventDefault();
     }
 
+    //pushes new values into Firebase database
     database.ref().push({
         trainName: trainName,
         destination: destination,
@@ -33,6 +35,7 @@ $(".submit").on("click", function() {
         frequency: frequency
     });
 
+    //clears all inputs after submitting
     $(".form-group input").val(null);
 
 });
